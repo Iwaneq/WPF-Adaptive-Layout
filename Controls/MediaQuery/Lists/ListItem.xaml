@@ -11,8 +11,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto" />
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="9*" />
+            <ColumnDefinition Width="4*" />
         </Grid.ColumnDefinitions>
 
         <Border

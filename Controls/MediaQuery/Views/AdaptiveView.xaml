@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Name="View"
     d:DesignHeight="450"
-    d:DesignWidth="440"
+    d:DesignWidth="240"
     FontSize="15"
     mc:Ignorable="d">
     <UserControl.Resources>
@@ -257,14 +257,138 @@
 
             </Grid>
         </DataTemplate>
+
+        <DataTemplate x:Key="SuperSmallScreen">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto">
+                <Grid Background="White">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                        <RowDefinition Height="auto" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="6"
+                        Margin="15,5,0,10"
+                        FontSize="20"
+                        Text="ViewModel:" />
+
+                    <!--  FIRST NAME  -->
+
+                    <TextBlock
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Margin="5,0"
+                        VerticalAlignment="Center"
+                        Text="First Name:" />
+
+                    <TextBox
+                        Grid.Row="1"
+                        Grid.Column="2"
+                        Width="100"
+                        Margin="5" />
+
+                    <!--  LAST NAME  -->
+
+                    <TextBlock
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Margin="5,0"
+                        VerticalAlignment="Center"
+                        Text="Last Name:" />
+
+                    <TextBox
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Width="100"
+                        Margin="5" />
+
+                    <!--  PASSWORD  -->
+
+                    <TextBlock
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Margin="5,0"
+                        VerticalAlignment="Center"
+                        Text="Password:" />
+
+                    <TextBox
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Width="100"
+                        Margin="5" />
+
+                    <!--  LIST  -->
+
+                    <TextBlock
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Margin="5,20,5,10"
+                        VerticalAlignment="Center"
+                        Text="Some List:" />
+
+                    <lists:List
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Height="50" />
+
+                    <!--  BUTTONS  -->
+
+                    <TextBlock
+                        Grid.Row="6"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Width="150"
+                        Height="50"
+                        Margin="0,10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Background="LightGray"
+                        Text="Button 1"
+                        TextAlignment="Center" />
+
+                    <TextBlock
+                        Grid.Row="7"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Width="150"
+                        Height="50"
+                        Margin="0,10"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Background="LightGray"
+                        Text="Button 2"
+                        TextAlignment="Center" />
+
+                </Grid>
+            </ScrollViewer>
+        </DataTemplate>
     </UserControl.Resources>
 
     <UserControl.Style>
         <Style TargetType="ContentControl">
             <Setter Property="ContentTemplate" Value="{StaticResource BigScreen}" />
             <Style.Triggers>
-                <DataTrigger Binding="{Binding ActualWidth, ElementName=View, Converter={StaticResource BreakpointConverter}, ConverterParameter=450}" Value="True">
+                <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource BreakpointConverter}, ConverterParameter=450}" Value="True">
                     <Setter Property="ContentTemplate" Value="{StaticResource SmallScreen}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ActualWidth, RelativeSource={RelativeSource Self}, Converter={StaticResource BreakpointConverter}, ConverterParameter=325}" Value="True">
+                    <Setter Property="ContentTemplate" Value="{StaticResource SuperSmallScreen}" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
